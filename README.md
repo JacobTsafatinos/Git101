@@ -1,6 +1,6 @@
 # Git101
 
-# Backtracking
+# Backtracking - How to undo "most" things.
 
 ## Undo a push
 Make a change, run ```git push```. Oh no this broke something! We need to undo one of the commits.
@@ -42,6 +42,28 @@ NOTE: ```reflog``` doesn't last forever, if an object becomes "unreachable", git
 Now that we're familiar with ```git reflog``` we can do a lot with it. We have a few options: 
 1. we could find the SHA we want and do ```git reset --hard <SHA>```.
 1. If we want to replay a commit into our repo we could use the very useful ```git cherry-pick <SHA>```
+
+## Same thing but with branching
+
+Picture this classic scenario. We've just made a bunch of commits, and are about to push but quickly realise we're on ```master```. If only there was a way to make those commits on a branch.
+
+Follow this recipe: ```git branch <name>``` -> ```git reset --hard origin/master``` -> ```git checkout <name>``` -> ```git push --set-upstream origin <name>```
+
+A lot of things are happening here, let's go through them.
+
+1. ```git branch <name>```: You most likely use ```git checkout -b <name>``` most of the time to make new branches. That's a short cut to make a branch and immediately switch to it. However we don't actually want to switch to it yet. ```git branch <name>``` will create a new branch which points to your most recent commit, but leaves us checked out (head) at ```master```.
+1. As we learned above, ```git reset --hard origin/master``` will move ```master``` back to ```origin/master```, before we made any commits. This is okay because we've moved them to the new branch first.
+1. ```git checkout <name>``` moves our ```HEAD``` to point to our new branch.
+1. Finally we push the new commits up for review.
+
+## Mass undo/redo
+
+
+
+## maybe rebasing on master? might be covered already
+
+
+
 
 # TODO
 1. Basic workflow simulation: Clone repo -> Create branch -> Make change -> add/commit change (add new file based on participants name) -> push (set upstream) -> merge (no conflicts since all new files should be unique)
