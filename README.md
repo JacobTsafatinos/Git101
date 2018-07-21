@@ -90,6 +90,11 @@ After running  ```git reset``` it now looks like:
 #### Situation:
 We just got rid of these changes and now you want them back already?! Fine. I know what you're thinking, we can just use the same technique we just learned and ```git reset``` to the last SHA... wait... I didn't keep track of the SHA's and my ```git log``` doesn't show them anymore. What do we do???
 
+**Let's set up this situation:**
+1. **First do this**
+1. **Then this**
+1. **Finally do this**
+
 #### What's Actually Happening:
 
 ```git reflog``` is our best friend and saviour here. ```git reflog``` shows a history of all the times the ```HEAD``` has changed. This happens when we make commits, switch branches, do resets.
@@ -111,6 +116,11 @@ Now that we're familiar with ```git reflog``` we can do a lot with it. We have a
 #### Situation:
 Picture this classic scenario. We've just made a bunch of commits, and are about to push, but crap we realize we're on ```master```. If only there was a simple quick way to make those commits on a branch.
 
+**Let's set up this situation:**
+1. **First do this**
+1. **Then this**
+1. **Finally do this**
+
 #### Solution:
 
 Follow this recipe: ```git branch <branch-name>``` -> ```git reset --hard origin/master``` -> ```git checkout <branch-name>``` -> ```git push --set-upstream origin <branch-name>```
@@ -131,6 +141,11 @@ A lot of things are happening here, let's go through them one by one.
 ## What the Heck is Git Rebase -i Used for Anyway?
 #### Situation:
 Imagine we started work on an issue with one solution, but midway we found another way was better. We have a billion commits now, but only some of them are actually useful. We want to push but don't really care about some of them, in fact we want them gone entirely.
+
+**Let's set up this situation:**
+1. **First do this**
+1. **Then this**
+1. **Finally do this**
 
 #### Solution:
 ```git rebase -i <earlier SHA>```
@@ -156,6 +171,11 @@ You may have seen this before when being told to do a rebase, and most people on
 #### Situation:
 You accidentally added a file to your staging aread and now you want to stop tracking it.
 
+**Let's set up this situation:**
+1. **First do this**
+1. **Then this**
+1. **Finally do this**
+
 #### Solution:
 ```git rm --cached <filename>```
 
@@ -164,20 +184,25 @@ Once a file has been added and commited, Git will continue to track changes in t
 
 ```git rm --chached <filename>``` will remove the file from tracking but won't touch it on disk. 
 
-## ABANDON SHIP!!!! (WIP)
+## ABANDON SHIP!!!! (cherry-picking)
 #### Situation:
-#### Solution:
-#### What's actually happening:
-
 Rebase went sour? you have a million commits included in your change and you have no idea how they got there? Some weird config on your local machine is messing with your stuff? Don't sink with the ship, get there hell out of there and take only what you need with you!
 
-```git checkout master```
-```git checkout -b new_branch```
-```git cherry-pick <target SHA>```
+**Let's set up this situation:**
+1. **First do this**
+1. **Then this**
+1. **Finally do this**
 
-What's happening here?
+#### Solution:
 
-## maybe rebasing on master? might be covered already
+1. ```git checkout master``` (make sure it's up to date)
+2. ```git checkout -b new_branch```
+3. ```git cherry-pick <target SHA>```
+
+#### What's actually happening:
+
+
+
 
 
 # TODO
