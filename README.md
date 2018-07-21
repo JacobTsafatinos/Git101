@@ -2,15 +2,41 @@
 
 # Backtracking - How to undo "most" things.
 
-## Undo a push (WIP)
-Make a change, run ```git push```. Oh no this broke something! We need to undo one of the commits.
+We'll do all out backtrackinng work in the backtrackinng repo. So first let's check it out.
 
-Use ```git revert <SHA>```. Reverting creates a new commit that is the inverse of the SHA passed in (anything removed or added in the old commit will be added or removed in the new commit)
+```mkdir backtracking```
+```cd backtracking```
+
+```git clone <repo-address>```
+
+
+## Undo a push (WIP)
+
+#### Situation:
+One of the most common mistakes. We made a change, pushed it and now we need to undo it.
+
+First let's make a new branch: ```git checkout -b undo-push```
+
+Now let's edit ```push_example.txt``` however you like.
+
+let's add, commit and push the change.
+
+```git add push_example.txt```
+```git commit -m "some change"```
+```git push``` 
+
+Oh no this broke something! We need to undo the changes.
+
+#### Solution:
+```git revert <SHA>```. 
+
+#### What's actually happening:
+```git revert``` creates a new commit that is the inverse of the SHA passed in (anything removed or added in the old commit will be reversed in the new commit). Revert is good because it doesn't alter any history, it simply creates a brand new commit removing your changes.
 
 Now you can ```git push``` the new "inverse" commit to undo the broken one.
 
 
-## fix your last commit (message or code) (WIP)
+### fix your last commit (message or code) (WIP)
 Let's make a new commit. ```git commit -m "getting shit done"```. oh no! Shopify took "get shit done" out of it's mandate. I guess we should fix this message.
 
 Use ```git commit -amend -m "getting work done"```. 
