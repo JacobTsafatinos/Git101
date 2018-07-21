@@ -53,7 +53,7 @@ Oh no we just got the email from HR! Shopify took "get shit done" out of it's ma
 ```git commit -amend -m "getting work done"```. 
 
 #### What's actually happening:
-![git revert example](visuals/git_amend.png)
+![git amend example](visuals/git_amend.png)
 
 Now if we run ```git log``` we can see the new commit message with. **NOTE: the commit SHA is now different than before**.
 
@@ -78,28 +78,32 @@ Wow those were horrible commits! And what kind of messages are those? Let's rese
 #### What's actually happening:
 Before resetting out history looked like so:
 
-![git revert example](visuals/git_reset_pre.png)
+![git reset example](visuals/git_reset_pre.png)
 
 After running  ```git reset``` it now looks like:
-![git revert example](visuals/git_reset_hard.png)
+![git reset example](visuals/git_reset_hard.png)
 
  ```git reset <target SHA>``` will change the repository's history back to what it looked like when we commited to the target SHA. It's important to note that ```git reset``` preserves the working directory, so although the commits are gone, the contents are still on disk. You can see them if you do ```git status```. Sometimes if you want to undo the commits and changes at the same time you can use ```git reset --hard <target SHA>```. Although we advise that you always use caution when using ```--hard```.
 
-## Undo Undo of local changes (redo after undo) (WIP)
+## Undo our Undo of local changes (secrets of reflog)
+
 #### Situation:
-#### Solution:
+We just got rid of these changes and now you want them back already?! Fine. I know what you're thinking, we can just use the same technique we just learned and ```git reset``` to the last SHA... wait... I didn't keep track of the SHA's and my ```git log``` doesn't show them anymore. What do we do???
+
 #### What's actually happening:
 
-We just got rid of these changes and now you want them back already?! I know what you're thinking, we can just use the same technique we just learned and ```git reset``` to the last SHA... but I didn't keep track of the SHA's and my ```git log``` doesn't show them anymore.
+```git reflog``` is our best friend and saviour here. ```git reflog``` shows a history of all the times the ```HEAD``` has changed. This happens when we make commits, switch branches, do resets.
 
-That's okay because we have ```git reflog``` which shows a list of all the times ```HEAD``` changed (make commits, switch branches, resets).
+Here's what it looks like:
+![git reflog example](visuals/git_reflog.png)
 
-NOTE: ```reflog``` is specific to you. You can't use reflog to restore someone elses un-pushed commits.
-NOTE: ```reflog``` doesn't last forever, if an object becomes "unreachable", git will garbage collect it.
+**NOTE: ```reflog``` is specific to you. You can't use reflog to restore someone elses un-pushed commits.**
+**NOTE: ```reflog``` doesn't last forever, if an object becomes "unreachable", git will garbage collect it eventually.**
 
-Now that we're familiar with ```git reflog``` we can do a lot with it. We have a few options: 
+#### Solution:
+Now that we're familiar with ```git reflog``` we can do a lot with it. We have a couple of options based on what we've learned so far: 
 1. we could find the SHA we want and do ```git reset --hard <SHA>```.
-1. If we want to replay a commit into our repo we could use the very useful ```git cherry-pick <SHA>```
+1. If we want to replay a commit into our repo we could use the very useful ```git cherry-pick <SHA>``` (we'll talk more about ```cherry-pick``` soon)
 
 ## Same thing but with branching (WIP)
 #### Situation:
