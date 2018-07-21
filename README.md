@@ -39,7 +39,7 @@ Oh no this broke something! We need to undo the changes.
 Now you can ```git push``` the new "inverse" commit to undo the broken one.
 
 
-## fix your last commit (message or code) (WIP)
+## fix your last commit (message or code)
 #### Situation:
 Let's edit ```fix_commit_messages.txt``` and let's ```add``` it to our staging area.
 
@@ -59,18 +59,36 @@ Now if we run ```git log``` we can see the new commit message with. **NOTE: the 
 
 ```git commit --amend``` updates and replaces the most recent commit with a new commit, which will combine any staged changes with the previous commit. If nothing is currently staged, then it just rewrites the previous commit message. Also if no message is specified then ```git commit --amend``` will open an edit window.
 
-## resetting local changes (WIP)
+## resetting local changes
 
-Let's make a few commits...
-```git commit -m "badunkadunk"```
-```git commit -m "hunkadunk"```
-```git commit -m "splunk"```
+#### Situation:
+We're working on a project and going lightning fast! Let's make a bunch of changes and commit them.
 
-Those were horrible commits! And what kind of messages are those? Let's reset the last 3 commits we just made.
+```git commit -m "awesome change"```
 
-```git reset <target SHA>``` will change the repository's history back to what it looked like when we commited the target SHA. It's important to note that ```git reset``` preserves the working directory, so although the commits are gone, the contents are still on disk. You can see them if you do ```git status```. Sometimes if you want to undo the commits and changes at the same time you can use ```git reset --hard <target SHA>```. Although we advise that you always use caution when using ```--hard```.
+```git commit -m "even better than last change"```
+
+```git commit -m "best of all changes right here!"```
+
+Wow those were horrible commits! And what kind of messages are those? Let's reset the last 3 commits we just made because they're too horrible to stain our wonderful repo.
+
+#### Solution:
+```git reset <target SHA>```
+
+#### What's actually happening:
+Before resetting out history looked like so:
+
+![git revert example](visuals/git_reset_pre.png)
+
+After running  ```git reset``` it now looks like:
+![git revert example](visuals/git_reset_hard.png)
+
+ ```git reset <target SHA>``` will change the repository's history back to what it looked like when we commited to the target SHA. It's important to note that ```git reset``` preserves the working directory, so although the commits are gone, the contents are still on disk. You can see them if you do ```git status```. Sometimes if you want to undo the commits and changes at the same time you can use ```git reset --hard <target SHA>```. Although we advise that you always use caution when using ```--hard```.
 
 ## Undo Undo of local changes (redo after undo) (WIP)
+#### Situation:
+#### Solution:
+#### What's actually happening:
 
 We just got rid of these changes and now you want them back already?! I know what you're thinking, we can just use the same technique we just learned and ```git reset``` to the last SHA... but I didn't keep track of the SHA's and my ```git log``` doesn't show them anymore.
 
@@ -84,6 +102,9 @@ Now that we're familiar with ```git reflog``` we can do a lot with it. We have a
 1. If we want to replay a commit into our repo we could use the very useful ```git cherry-pick <SHA>```
 
 ## Same thing but with branching (WIP)
+#### Situation:
+#### Solution:
+#### What's actually happening:
 
 Picture this classic scenario. We've just made a bunch of commits, and are about to push but quickly realise we're on ```master```. If only there was a way to make those commits on a branch.
 
@@ -97,6 +118,9 @@ A lot of things are happening here, let's go through them.
 1. Finally we push the new commits up for review.
 
 ## What the heck is git rebase -i used for anyway? (WIP)
+#### Situation:
+#### Solution:
+#### What's actually happening:
 
 Imagine we started work on an issue with one solution, but midway we found another way was better. We have a billion commits now, but only some of them are actually useful. We want to push but don't really care about some of them, in fact we want them gone entirely.
 
@@ -114,12 +138,18 @@ The only columns that really matter are the first two. The command for the commi
 These actions will get applied when you save and quick your editor, this happens top to bottom. You can adjust the order of the commits by simply moving lines around.
 
 ## stop tracking a file (WIP)
+#### Situation:
+#### Solution:
+#### What's actually happening:
 
 You accidentally added something and now you want to stop
 
 ```git rm --cached <filename>```
 
 ## ABANDON SHIP!!!! (WIP)
+#### Situation:
+#### Solution:
+#### What's actually happening:
 
 Rebase went sour? you have a million commits included in your change and you have no idea how they got there? Some weird config on your local machine is messing with your stuff? Don't sink with the ship, get there hell out of there and take only what you need with you!
 
