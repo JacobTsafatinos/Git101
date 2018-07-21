@@ -42,26 +42,27 @@ There's a ton going on here. Given that this is our first example and the most c
    - ```git remote add origin <url>``` (add the URL to that repository)
    - ```git fetch``` (fetch all branches from that URL to your local repository)
    - ```git checkout``` (create all the files of the main branch in your working tree)
+  
 2. ```git checkout -b <branch-name>``` creates a new branch which is a copy from wherever your current HEAD is, and moves the HEAD to the new branch. This command also is the combination of two other commands:
 
 Clean fresh master: 
 
-![git branch example](visuals/git-branch-master.png)
+![git branch example](visuals/git-branch-master.png) . 
 
 ```git branch <branch-name>``` simply creates a new branch with the name you give it, but leaves head pointing to the previous branch: 
 
-![git branch example](visuals/git-branch-new.png)
+![git branch example](visuals/git-branch-new.png) . 
 
 ```git checkout <branch-name>``` moves your HEAD to point to the newly specified branch:
 
-![git branch example](visuals/git-branch-checkout.png)
+![git branch example](visuals/git-branch-checkout.png) . 
 
-3. ```git add``` is a simple one, this moves whatever files you give it to the staging aread (also known as the index). This tells git to include these files in the next commit.
+3. ```git add``` is a simple one, this moves whatever files you give it to the staging aread (also known as the index). This tells git to include these files in the next commit.  
 
 4.```git commit``` takes any files in the staging area and adds them to the local repository. More specifically it creates a new commit object containing your changes, a pointer to it's parent commit, and a SHA identifier, it then updates the HEAD to point to this newly created commit. [(as well as some other things that you can read about in this great post about the anatomy of a commit.)](https://blog.thoughtram.io/git/2014/11/18/the-anatomy-of-a-git-commit.html)  
 
-5. ```git push --set-upstream origin <branch-name>``` sets the default remote branch for the current local branch. Any future remote commands, like git pull, will attempt to bring in commits from the <remote-branch> into the current local branch.
- 
+5. ```git push --set-upstream origin <branch-name>``` sets the default remote branch for the current local branch. Any future remote commands, like git pull, will attempt to bring in commits from the <remote-branch> into the current local branch.  
+
 Adding a remote tracking branch means that git then knows what you want to do when you git fetch, git pull or git push in future. It assumes that you want to keep the local branch and the remote branch it is tracking in sync and does the appropriate thing to achieve this.
 
 
