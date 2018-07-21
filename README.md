@@ -53,7 +53,9 @@ Oh no we just got the email from HR! Shopify took "get shit done" out of it's ma
 ```git commit -amend -m "getting work done"```. 
 
 #### What's actually happening:
-Now if we run ```git log``` we can see the new commit message with. **NOTE: the commit SHA is now different than before.
+![git revert example](visuals/git_amend.png)
+
+Now if we run ```git log``` we can see the new commit message with. **NOTE: the commit SHA is now different than before**.
 
 ```git commit --amend``` updates and replaces the most recent commit with a new commit, which will combine any staged changes with the previous commit. If nothing is currently staged, then it just rewrites the previous commit message. Also if no message is specified then ```git commit --amend``` will open an edit window.
 
