@@ -10,7 +10,7 @@ We'll do all out backtrackinng work in the backtrackinng repo. So first let's ch
 ```git clone <repo-address>```
 
 
-## Undo a push (WIP)
+## Undo a push
 
 #### Situation:
 One of the most common mistakes. We made a change, pushed it and now we need to undo it.
@@ -31,6 +31,9 @@ Oh no this broke something! We need to undo the changes.
 ```git revert <SHA>```. 
 
 #### What's actually happening:
+![git revert example](visuals/git_revert.png)
+
+
 ```git revert``` creates a new commit that is the inverse of the SHA passed in (anything removed or added in the old commit will be reversed in the new commit). Revert is good because it doesn't alter any history, it simply creates a brand new commit removing your changes.
 
 Now you can ```git push``` the new "inverse" commit to undo the broken one.
