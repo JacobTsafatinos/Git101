@@ -201,6 +201,13 @@ Rebase went sour? you have a million commits included in your change and you hav
 
 #### What's actually happening:
 
+This one isn't actually that complicated. First we move the head back to the ```master``` branch to make sure we're escaping the horrors of our branch. Then we create a new branch and move our head to it so we're starting fresh from whatevers on ```master```. Finally we grab the specified commits and make "copies" of them on top of our current branch. 
+
+![git cherry picking example](visuals/cherry_picking.png)
+
+
+Notice that as we ```cherry-pick``` each commit, we're creating new ```SHA```'s, but the commit messages remain the same.
+
 
 
 
