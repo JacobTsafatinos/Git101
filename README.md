@@ -2,7 +2,7 @@
 
 # Backtracking - How to undo "most" things.
 
-We'll do all out backtrackinng work in the backtrackinng repo. So first let's check it out.
+We'll do all out backtracking work in the backtracking repo. So first let's check it out.
 
 ```mkdir backtracking```
 ```cd backtracking```
