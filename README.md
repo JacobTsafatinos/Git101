@@ -97,29 +97,36 @@ We just got rid of these changes and now you want them back already?! Fine. I kn
 Here's what it looks like:
 ![git reflog example](visuals/git_reflog.png)
 
-**NOTE: ```reflog``` is specific to you. You can't use reflog to restore someone elses un-pushed commits.**
-**NOTE: ```reflog``` doesn't last forever, if an object becomes "unreachable", git will garbage collect it eventually.**
+**NOTE:**
+1. ```reflog``` is specific to you. You can't use reflog to restore someone elses un-pushed commits.
+1. ```reflog``` doesn't last forever, if an object becomes "unreachable", git will garbage collect it eventually.
 
 #### Solution:
 Now that we're familiar with ```git reflog``` we can do a lot with it. We have a couple of options based on what we've learned so far: 
 1. we could find the SHA we want and do ```git reset --hard <SHA>```.
 1. If we want to replay a commit into our repo we could use the very useful ```git cherry-pick <SHA>``` (we'll talk more about ```cherry-pick``` soon)
 
-## Same thing but with branching (WIP)
+## Forgetting that you were on master branching
+
 #### Situation:
+Picture this classic scenario. We've just made a bunch of commits, and are about to push, but crap we realize we're on ```master```. If only there was a simple quick way to make those commits on a branch.
+
 #### Solution:
+
+Follow this recipe: ```git branch <branch-name>``` -> ```git reset --hard origin/master``` -> ```git checkout <branch-name>``` -> ```git push --set-upstream origin <branch-name>```
+
 #### What's actually happening:
 
-Picture this classic scenario. We've just made a bunch of commits, and are about to push but quickly realise we're on ```master```. If only there was a way to make those commits on a branch.
+A lot of things are happening here, let's go through them one by one.
 
-Follow this recipe: ```git branch <name>``` -> ```git reset --hard origin/master``` -> ```git checkout <name>``` -> ```git push --set-upstream origin <name>```
-
-A lot of things are happening here, let's go through them.
-
-1. ```git branch <name>```: You most likely use ```git checkout -b <name>``` most of the time to make new branches. That's a short cut to make a branch and immediately switch to it. However we don't actually want to switch to it yet. ```git branch <name>``` will create a new branch which points to your most recent commit, but leaves us checked out (head) at ```master```.
-1. As we learned above, ```git reset --hard origin/master``` will move ```master``` back to ```origin/master```, before we made any commits. This is okay because we've moved them to the new branch first.
-1. ```git checkout <name>``` moves our ```HEAD``` to point to our new branch.
+1. ```git branch <name>```: You're most likely familiar with ```git checkout -b <name>``` when creating new branches. That's a short cut to make a branch and immediately switch to it. However we don't actually want to switch to the new branch yet. ```git branch <name>``` will create a new branch which points to your most recent commit, but leaves us at ```master```.
+![git branch reset example](visuals/branch_reset_1.png)
+1. As we know ```git reset --hard origin/master``` will move ```master``` back to ```origin/master```, before we made any commits. This is okay because we've moved all our commits to the new branch first.
+![git branch reset example](visuals/branch_reset_2.png)
+1. ```git checkout <name>``` moves our ```HEAD``` to point to the tip of our new branch.
+![git branch reset example](visuals/branch_reset_3.png)
 1. Finally we push the new commits up for review.
+![git branch reset example](visuals/branch_reset_4.png)
 
 ## What the heck is git rebase -i used for anyway? (WIP)
 #### Situation:
