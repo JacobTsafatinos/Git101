@@ -218,4 +218,5 @@ Notice that as we ```cherry-pick``` each commit, we're creating new ```SHA```'s,
 3. Many people working on same repo simulation: Clone repo -> Create branch -> Make change -> add/commit change to existing file -> one at a time have them push/merge and keep fixing conflicts until there's no more conflicts to resolve.
 4. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
 5. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
+6. git patching, and recovering from detatched head.
 
