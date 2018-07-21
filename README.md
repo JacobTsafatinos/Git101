@@ -128,25 +128,29 @@ A lot of things are happening here, let's go through them one by one.
 1. Finally we push the new commits up for review.
 ![git branch reset example](visuals/branch_reset_4.png)
 
-## What the heck is git rebase -i used for anyway? (WIP)
+## What the heck is git rebase -i used for anyway?
 #### Situation:
-#### Solution:
-#### What's actually happening:
-
 Imagine we started work on an issue with one solution, but midway we found another way was better. We have a billion commits now, but only some of them are actually useful. We want to push but don't really care about some of them, in fact we want them gone entirely.
 
+#### Solution:
 ```git rebase -i <earlier SHA>```
+
+#### What's actually happening:
 
 ```-i``` stands for interactive, and therefore puts your ```rebase``` into "interactive mode". Before replaying any commits, it opens up an editor and allows us to edit each commit as it get's replayed.
 
-The only columns that really matter are the first two. The command for the commit, and the SHA of the commit. By default rebase -i will assume you're picking every commit. You may have seen this before when being told to do a rebase, and most people only ever use this for squashing down commits, but you can do so much more. Some useful options:
+The only columns that really matter are the first two. The **command** for the commit, and the **SHA** of the commit. By default ```rebase -i``` will assume you're picking every commit. It looks something like this:
 
-```reword``` let's us change the commit message. Not immediately, but at the time of replaying.
-```squash``` the most common case, will meld with the commit directly above it, but will prompt you to write a new commit message.
-```fixup``` like ```squash``` it melds "up" with the commit immediately above it, but it drops the commit message.
-```drop``` removes the commit. You could also achieve this by just deleting the line.
+![git rebase example](visuals/git_rebase.png)
 
-These actions will get applied when you save and quick your editor, this happens top to bottom. You can adjust the order of the commits by simply moving lines around.
+You may have seen this before when being told to do a rebase, and most people only ever use this for squashing down commits, but you can do much more. Some useful options:
+
+1. ```reword``` let's us change the commit message. Not immediately, but at the time of replaying.
+1. ```squash``` Will meld with the commit directly above it, but will prompt you to write a new commit message.
+1. ```fixup``` like ```squash``` it melds "up" with the commit immediately above it, but it drops the commit message.
+1. ```drop``` removes the commit. You could also achieve this by just deleting the line.
+
+**NOTE: These actions will get applied when you save and quick your editor, this happens top to bottom. You can adjust the order of the commits by simply moving lines around.**
 
 ## stop tracking a file (WIP)
 #### Situation:
