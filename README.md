@@ -19,11 +19,11 @@ First let's make a new branch: ```git checkout -b undo-push```
 
 Now let's edit ```push_example.txt``` however you like.
 
-let's add, commit and push the change.
+let's add, commit and push the change. (from here on we'll assume you know how to run the following commands)
 
 ```git add push_example.txt```
 ```git commit -m "some change"```
-```git push``` 
+```git push```
 
 Oh no this broke something! We need to undo the changes.
 
@@ -36,14 +36,23 @@ Oh no this broke something! We need to undo the changes.
 Now you can ```git push``` the new "inverse" commit to undo the broken one.
 
 
-### fix your last commit (message or code) (WIP)
-Let's make a new commit. ```git commit -m "getting shit done"```. oh no! Shopify took "get shit done" out of it's mandate. I guess we should fix this message.
+## fix your last commit (message or code) (WIP)
+#### Situation:
+Let's edit ```fix_commit_messages.txt``` and let's ```add``` it to our staging area.
 
-Use ```git commit -amend -m "getting work done"```. 
+Now let's say we're being super productive and decide to get a little saucy with our commit messages. 
 
-Now you can see your new commit message with ```git log```. NOTE: the commit SHA is now different than before.
+```git commit -m "getting shit done"```. 
 
-```git commit --amend``` updates and replaces the most recent commit with a new commit which will combine any staged changes with the previous commit. If nothing is currently staged, then it just rewrites the previous commit message. Also if no message is specified then ```git commit --amend``` will open an edit window.
+Oh no we just got the email from HR! Shopify took "get shit done" out of it's mandate. I guess we should fix this message or we'll look pretty stupid.
+
+#### Solution:
+```git commit -amend -m "getting work done"```. 
+
+#### What's actually happening:
+Now if we run ```git log``` we can see the new commit message with. **NOTE: the commit SHA is now different than before.
+
+```git commit --amend``` updates and replaces the most recent commit with a new commit, which will combine any staged changes with the previous commit. If nothing is currently staged, then it just rewrites the previous commit message. Also if no message is specified then ```git commit --amend``` will open an edit window.
 
 ## resetting local changes (WIP)
 
