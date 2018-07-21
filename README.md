@@ -10,7 +10,7 @@ We'll do all out backtrackinng work in the backtrackinng repo. So first let's ch
 ```git clone <repo-address>```
 
 
-## Undo a push (WIP)
+## Undo a push
 
 #### Situation:
 One of the most common mistakes. We made a change, pushed it and now we need to undo it.
