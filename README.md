@@ -6,15 +6,70 @@
 3. Many people working on same repo simulation: Clone repo -> Create branch -> Make change -> add/commit change to existing file -> one at a time have them push/merge and keep fixing conflicts until there's no more conflicts to resolve.
 4. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
 5. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
+6. Stashing
 
 # Common Git Workflow 
 
-## Most Common of Git Workflows
+## Most Common of Git Workflows (don't take anything for grented)
 
 #### Set Up:
+Have git set up. If you don't already have git then install it!
+Here:
+Here:
+and Here:
+
 #### Situation:
+Just started at Shopify and I'd like to make my first change!
+
 #### Solution:
+```git clone <repo-url>```
+
+```git checkout -b <branch-name>```
+
+Now let's edit ```git_workflow_1.txt```
+
+```git add <file-name>```
+
+```git commit -m "adding this change"```
+
+```git push --set-upstream origin <branch-name>```
+
 #### What's Actually Happening:
+There's a ton going on here. Given that this is our first example and the most common of git practices we'll go over this step by step.
+
+1. ```git clone``` is primarily used to point to an existing repo and make a clone or copy of that repo at in a new directory, at another location. As a convenience, cloning automatically creates a remote connection called ```origin``` pointing back to the target repository, and creates a local ```master``` branch for you. If you're curious, this is what ```git clone``` is doing behind the scenes:
+   - ```git init``` (create the local repository)
+   - ```git remote add origin <url>``` (add the URL to that repository)
+   - ```git fetch``` (fetch all branches from that URL to your local repository)
+   - ```git checkout``` (create all the files of the main branch in your working tree)
+2. ```git checkout -b <branch-name>``` creates a new branch which is a copy from wherever your current HEAD is, and moves the HEAD to the new branch. This command also is the combination of two other commands:
+
+Clean fresh master: 
+
+![git branch example](visuals/git-branch-master.png)
+
+```git branch <branch-name>``` simply creates a new branch with the name you give it, but leaves head pointing to the previous branch: 
+
+![git branch example](visuals/git-branch-new.png)
+
+```git checkout <branch-name>``` moves your HEAD to point to the newly specified branch:
+
+![git branch example](visuals/git-branch-checkout.png)
+
+3. ```git add``` is a simple one, this moves whatever files you give it to the staging aread (also known as the index). This tells git to include these files in the next commit.
+
+4.```git commit``` takes any files in the staging area and adds them to the local repository. More specifically it creates a new commit object containing your changes, a pointer to it's parent commit, and a SHA identifier, it then updates the HEAD to point to this newly created commit. [(as well as some other things that you can read about in this great post about the anatomy of a commit.)](https://blog.thoughtram.io/git/2014/11/18/the-anatomy-of-a-git-commit.html)  
+
+5. ```git push --set-upstream origin <branch-name>``` sets the default remote branch for the current local branch. Any future remote commands, like git pull, will attempt to bring in commits from the <remote-branch> into the current local branch.
+ 
+Adding a remote tracking branch means that git then knows what you want to do when you git fetch, git pull or git push in future. It assumes that you want to keep the local branch and the remote branch it is tracking in sync and does the appropriate thing to achieve this.
+
+
+
+
+
+
+
 
 ## Squashing
 
