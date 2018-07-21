@@ -1,5 +1,50 @@
 # Git101
 
+# TODO
+1. Basic workflow simulation: Clone repo -> Create branch -> Make change -> add/commit change (add new file based on participants name) -> push (set upstream) -> merge (no conflicts since all new files should be unique)
+2. Squashing simulation: Same as #1 but introduce "PR feedback" and have them do multiple commits which they'll then have to either amend or squash.
+3. Many people working on same repo simulation: Clone repo -> Create branch -> Make change -> add/commit change to existing file -> one at a time have them push/merge and keep fixing conflicts until there's no more conflicts to resolve.
+4. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
+5. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
+
+# Common Git Workflow 
+
+## Most Common of Git Workflows
+
+#### Set Up:
+#### Situation:
+#### Solution:
+#### What's Actually Happening:
+
+## Squashing
+
+#### Set Up:
+#### Situation:
+#### Solution:
+#### What's Actually Happening:
+
+## Merging
+
+#### Set Up:
+#### Situation:
+#### Solution:
+#### What's Actually Happening:
+
+## Better Merging
+
+#### Set Up:
+#### Situation:
+#### Solution:
+#### What's Actually Happening:
+
+## Rebase Instead of Merge
+
+#### Set Up:
+#### Situation:
+#### Solution:
+#### What's Actually Happening:
+
+
 # Backtracking - How to Undo "Most" Things.
 
 We'll do all out backtracking work in the backtracking repo. So first let's check it out.
@@ -208,15 +253,7 @@ This one isn't actually that complicated. First we move the head back to the ```
 
 Notice that as we ```cherry-pick``` each commit, we're creating new ```SHA```'s, but the commit messages remain the same.
 
+# backtracking todo:
+1. git patching, and recovering from detatched head.
 
-
-
-
-# TODO
-1. Basic workflow simulation: Clone repo -> Create branch -> Make change -> add/commit change (add new file based on participants name) -> push (set upstream) -> merge (no conflicts since all new files should be unique)
-2. Squashing simulation: Same as #1 but introduce "PR feedback" and have them do multiple commits which they'll then have to either amend or squash.
-3. Many people working on same repo simulation: Clone repo -> Create branch -> Make change -> add/commit change to existing file -> one at a time have them push/merge and keep fixing conflicts until there's no more conflicts to resolve.
-4. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
-5. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
-6. git patching, and recovering from detatched head.
 
