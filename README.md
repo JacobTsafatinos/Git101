@@ -1,6 +1,6 @@
 # Git101
 
-# Backtracking - How to undo "most" things.
+# Backtracking - How to Undo "Most" Things.
 
 We'll do all out backtracking work in the backtracking repo. So first let's check it out.
 
@@ -10,7 +10,7 @@ We'll do all out backtracking work in the backtracking repo. So first let's chec
 ```git clone <repo-address>```
 
 
-## Undo a push
+## Undo a Push
 
 #### Situation:
 One of the most common mistakes. We made a change, pushed it and now we need to undo it.
@@ -30,7 +30,7 @@ Oh no this broke something! We need to undo the changes.
 #### Solution:
 ```git revert <SHA>```. 
 
-#### What's actually happening:
+#### What's Actually Happening:
 ![git revert example](visuals/git_revert.png)
 
 
@@ -39,7 +39,7 @@ Oh no this broke something! We need to undo the changes.
 Now you can ```git push``` the new "inverse" commit to undo the broken one.
 
 
-## fix your last commit (message or code)
+## Fix Your Last Commit (message or code)
 #### Situation:
 Let's edit ```fix_commit_messages.txt``` and let's ```add``` it to our staging area.
 
@@ -52,14 +52,14 @@ Oh no we just got the email from HR! Shopify took "get shit done" out of it's ma
 #### Solution:
 ```git commit -amend -m "getting work done"```. 
 
-#### What's actually happening:
+#### What's Actually Happening:
 ![git amend example](visuals/git_amend.png)
 
 Now if we run ```git log``` we can see the new commit message with. **NOTE: the commit SHA is now different than before**.
 
 ```git commit --amend``` updates and replaces the most recent commit with a new commit, which will combine any staged changes with the previous commit. If nothing is currently staged, then it just rewrites the previous commit message. Also if no message is specified then ```git commit --amend``` will open an edit window.
 
-## resetting local changes
+## Resetting Local Changes
 
 #### Situation:
 We're working on a project and going lightning fast! Let's make a bunch of changes and commit them.
@@ -75,7 +75,7 @@ Wow those were horrible commits! And what kind of messages are those? Let's rese
 #### Solution:
 ```git reset <target SHA>```
 
-#### What's actually happening:
+#### What's Actually Happening:
 Before resetting out history looked like so:
 
 ![git reset example](visuals/git_reset_pre.png)
@@ -85,12 +85,12 @@ After running  ```git reset``` it now looks like:
 
  ```git reset <target SHA>``` will change the repository's history back to what it looked like when we commited to the target SHA. It's important to note that ```git reset``` preserves the working directory, so although the commits are gone, the contents are still on disk. You can see them if you do ```git status```. Sometimes if you want to undo the commits and changes at the same time you can use ```git reset --hard <target SHA>```. Although we advise that you always use caution when using ```--hard```.
 
-## Undo our Undo of local changes (secrets of reflog)
+## Undo our Undo of Local Changes (Secrets of Reflog)
 
 #### Situation:
 We just got rid of these changes and now you want them back already?! Fine. I know what you're thinking, we can just use the same technique we just learned and ```git reset``` to the last SHA... wait... I didn't keep track of the SHA's and my ```git log``` doesn't show them anymore. What do we do???
 
-#### What's actually happening:
+#### What's Actually Happening:
 
 ```git reflog``` is our best friend and saviour here. ```git reflog``` shows a history of all the times the ```HEAD``` has changed. This happens when we make commits, switch branches, do resets.
 
@@ -106,7 +106,7 @@ Now that we're familiar with ```git reflog``` we can do a lot with it. We have a
 1. we could find the SHA we want and do ```git reset --hard <SHA>```.
 1. If we want to replay a commit into our repo we could use the very useful ```git cherry-pick <SHA>``` (we'll talk more about ```cherry-pick``` soon)
 
-## Forgetting that you were on master branching
+## Forgetting That You Were on Master
 
 #### Situation:
 Picture this classic scenario. We've just made a bunch of commits, and are about to push, but crap we realize we're on ```master```. If only there was a simple quick way to make those commits on a branch.
@@ -115,7 +115,7 @@ Picture this classic scenario. We've just made a bunch of commits, and are about
 
 Follow this recipe: ```git branch <branch-name>``` -> ```git reset --hard origin/master``` -> ```git checkout <branch-name>``` -> ```git push --set-upstream origin <branch-name>```
 
-#### What's actually happening:
+#### What's Actually Happening:
 
 A lot of things are happening here, let's go through them one by one.
 
@@ -128,14 +128,14 @@ A lot of things are happening here, let's go through them one by one.
 1. Finally we push the new commits up for review.
 ![git branch reset example](visuals/branch_reset_4.png)
 
-## What the heck is git rebase -i used for anyway?
+## What the Heck is Git Rebase -i Used for Anyway?
 #### Situation:
 Imagine we started work on an issue with one solution, but midway we found another way was better. We have a billion commits now, but only some of them are actually useful. We want to push but don't really care about some of them, in fact we want them gone entirely.
 
 #### Solution:
 ```git rebase -i <earlier SHA>```
 
-#### What's actually happening:
+#### What's Actually Happening:
 
 ```-i``` stands for interactive, and therefore puts your ```rebase``` into "interactive mode". Before replaying any commits, it opens up an editor and allows us to edit each commit as it get's replayed.
 
@@ -152,14 +152,17 @@ You may have seen this before when being told to do a rebase, and most people on
 
 **NOTE: These actions will get applied when you save and quick your editor, this happens top to bottom. You can adjust the order of the commits by simply moving lines around.**
 
-## stop tracking a file (WIP)
+## Stop Tracking a File
 #### Situation:
+You accidentally added a file to your staging aread and now you want to stop tracking it.
+
 #### Solution:
-#### What's actually happening:
-
-You accidentally added something and now you want to stop
-
 ```git rm --cached <filename>```
+
+#### What's actually happening:
+Once a file has been added and commited, Git will continue to track changes in that file.
+
+```git rm --chached <filename>``` will remove the file from tracking but won't touch it on disk. 
 
 ## ABANDON SHIP!!!! (WIP)
 #### Situation:
