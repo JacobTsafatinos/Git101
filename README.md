@@ -89,6 +89,13 @@ We have a bunch of little changes, and they're all kind of related to the same l
 
 #### What's Actually Happening:
 
+We'll go into more detail about ```git rebase -i``` later, but for now what's happening is we're going to merge all our commits into one logical commit. This new commit will contain all the changes of the squashed commits directly below it. We should see an editor pop up that looks like this:
+**Our Git log**
+**enter exibit A**
+We'll pick the commits we want to squash, and it'll now look like this:
+**enter exibit B**
+**Our Git log now!**
+
 **See rebase -i section?**
 
 
