@@ -51,11 +51,11 @@ Clean fresh master:
 
 ```git branch <branch-name>``` simply creates a new branch with the name you give it, but leaves head pointing to the previous branch: 
 
-![git branch example](visuals/git-branch-new.png) . 
+![git branch example](visuals/git-branch-new.png)  
 
 ```git checkout <branch-name>``` moves your HEAD to point to the newly specified branch:
 
-![git branch example](visuals/git-branch-checkout.png) . 
+![git branch example](visuals/git-branch-checkout.png) 
 
 3. ```git add``` is a simple one, this moves whatever files you give it to the staging aread (also known as the index). This tells git to include these files in the next commit.  
 
@@ -102,9 +102,25 @@ We'll pick the commits we want to squash, and it'll now look like this:
 ## Merging
 
 #### Set Up:
+Let's make some commits
+Then let's branch
+then let's make a few more commits
+
+
 #### Situation:
+We've got a branch with a bunch of good stuff on it. We want that stuff on master. We're going to get that stuff.
+
+
 #### Solution:
+```git merge <branch-name>```
+
 #### What's Actually Happening:
+
+![git merge example](visuals/git-pre-merge.png)
+
+```git merge``` will look for the first common branch of our current branch, and the target branch. If there are no conflicting changes it will simply create a new "merge commit", which will have two parents as seen below.
+
+![git merge example](visuals/git-post-merge.png)
 
 ## Better Merging
 
