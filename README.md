@@ -7,16 +7,14 @@
 4. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
 5. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
 6. Stashing
+7. start debugging section
 
 # Common Git Workflow 
 
 ## Most Common of Git Workflows (don't take anything for grented)
 
 #### Set Up:
-Have git set up. If you don't already have git then install it!
-Here:
-Here:
-and Here:
+Have git set up. If you don't already have git then [install it!](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 #### Situation:
 Just started at Shopify and I'd like to make my first change!
@@ -33,6 +31,8 @@ Now let's edit ```git_workflow_1.txt```
 ```git commit -m "adding this change"```
 
 ```git push --set-upstream origin <branch-name>```
+
+**not sure we'll go into mergine yet or not**
 
 #### What's Actually Happening:
 There's a ton going on here. Given that this is our first example and the most common of git practices we'll go over this step by step.
@@ -66,18 +66,38 @@ Clean fresh master:
 Adding a remote tracking branch means that git then knows what you want to do when you git fetch, git pull or git push in future. It assumes that you want to keep the local branch and the remote branch it is tracking in sync and does the appropriate thing to achieve this.
 
 
-
-
-
-
-
-
 ## Squashing
 
 #### Set Up:
+
+Let's make a bunch of minor changes, do the following 5 times:
+
+edit ```squashing.txt```
+
+```git add squashing.txt```
+
+```git commit -m "some descriptive message"```
+
+
 #### Situation:
+**flesh out this example more into logical commits**
+We have a bunch of little changes, and they're all kind of related to the same logical change. We could just push this history which would be representative of the literal history of the changes made, however it doesn't read very well if you're doing some git log debugging. What if we could squash all these commits down to 1 nice commit?
+
 #### Solution:
+
+```git rebase -i HEAD~5```
+
 #### What's Actually Happening:
+
+We'll go into more detail about ```git rebase -i``` later, but for now what's happening is we're going to merge all our commits into one logical commit. This new commit will contain all the changes of the squashed commits directly below it. We should see an editor pop up that looks like this:
+**Our Git log**
+**enter exibit A**
+We'll pick the commits we want to squash, and it'll now look like this:
+**enter exibit B**
+**Our Git log now!**
+
+**See rebase -i section?**
+
 
 ## Merging
 
@@ -93,7 +113,7 @@ Adding a remote tracking branch means that git then knows what you want to do wh
 #### Solution:
 #### What's Actually Happening:
 
-## Rebase Instead of Merge
+## Rebase Instead of Merge (rebase vs pull?)
 
 #### Set Up:
 #### Situation:
