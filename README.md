@@ -141,15 +141,30 @@ We're all in the same repo, working on the same files and we're racing against e
 
 #### What's Actually Happening:
 
-
+Git doesn't allow you to push to a remote repository if it contains work that you don't have locally. Because of this, you'll need to pull (git fetch, git merge) and fix any conflicting files, before you can push. 
 
 ## Rebase Instead of Merge (rebase vs pull?)
 
 #### Set Up:
+Make a branch and switch to it
+Make some commits
+
 #### Situation:
+We're on a branch with a bunch of new changes. We now have a choice, we could merge this branch with master, or we could rebase. In this example we're going to rebase.
+
 #### Solution:
+```git rebase master```
+
 #### What's Actually Happening:
 
+Althought ```rebase``` and ```merge``` have similar effect, the outcomes and process to which they get to that effect are completeley different. As we learned above, "merging" creates a brand new commit that has references to the branches it was merging togeter, and it looks like this:
+
+![git merge example](visuals/git-post-merge.png)
+
+"rebasing" takes every commit after the common ancestory, and copies them over one by one on top of ```master```. People like this approach because it maintains a linear history. If we always rebased we'd never have commits with two parents. It looks like this:
+
+![git rebase example](visuals/git-pre-rebase.png)
+![git rebase example](visuals/git-rebase.png)
 
 # Backtracking - How to Undo "Most" Things.
 
