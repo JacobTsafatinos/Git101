@@ -4,8 +4,13 @@
 
 1. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
 2. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
-3. Stashing
+3. Create a really horrible situation and leave people to handle it on their own.
 4. start debugging section
+
+**Bonus**
+Stashing
+Git Cheat Sheet
+Handouts
 
 # Common Git Workflow 
 
@@ -30,7 +35,7 @@ Now let's edit ```git_workflow_1.txt```
 
 ```git push --set-upstream origin <branch-name>```
 
-**not sure we'll go into mergine yet or not**
+**not sure we'll go into merging yet or not**
 
 #### What's Actually Happening:
 There's a ton going on here. Given that this is our first example and the most common of git practices we'll go over this step by step.
@@ -155,14 +160,21 @@ We're on a branch with a bunch of new changes. We now have a choice, we could me
 
 #### What's Actually Happening:
 
-Althought ```rebase``` and ```merge``` have similar effect, the outcomes and process to which they get to that effect are completeley different. As we learned above, "merging" creates a brand new commit that has references to the branches it was merging togeter, and it looks like this:
+Although ```rebase``` and ```merge``` have similar effect, the outcomes and process to which they get to that effect are completeley different. As we learned above, "merging" creates a brand new commit that has references to the branches it was merging togeter, and it looks like this:
 
 ![git merge example](visuals/git-post-merge.png)
 
-"rebasing" takes every commit after the common ancestory, and copies them over one by one on top of ```master```. People like this approach because it maintains a linear history. If we always rebased we'd never have commits with two parents. It looks like this:
+"rebasing" takes every commit after the common ancestor, and copies them over one by one on top of ```master```. People like this approach because it maintains a linear history. If we always rebased we'd never have commits with two parents. It looks like this:
 
 ![git rebase example](visuals/git-pre-rebase.png)
 ![git rebase example](visuals/git-rebase.png)
+
+
+
+
+
+
+
 
 # Backtracking - How to Undo "Most" Things.
 
@@ -374,5 +386,25 @@ Notice that as we ```cherry-pick``` each commit, we're creating new ```SHA```'s,
 
 # backtracking todo:
 1. git patching, and recovering from detatched head.
+
+## The Final Boss
+#### Set Up:
+Do this
+and this
+and this
+and this
+and then this
+and all these things
+
+#### Situation:
+
+We're in a really bad state here, there's many different things we can do to get out of this.
+
+#### Solution:
+Figure it out yourself!
+
+#### What's Actually Happening:
+
+You now know how to use Git.
 
 
