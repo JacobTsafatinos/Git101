@@ -14,7 +14,7 @@ Handouts
 
 # Common Git Workflow 
 
-## Most Common of Git Workflows (don't take anything for grented)
+## Most Common of Git Workflows (don't take anything for granted)
 
 #### Set Up:
 Have git set up. If you don't already have git then [install it!](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
