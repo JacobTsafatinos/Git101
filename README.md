@@ -5,11 +5,14 @@
 1. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
 2. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
 3. Create a really horrible situation and leave people to handle it on their own.
-4. start debugging section
+4. start debugging section - tips and tricks to figure out what went wrong. (reflog, diff, log, blame, bisect?(probably not)
 
 **Bonus**
+
 Stashing
+
 Git Cheat Sheet
+
 Handouts
 
 # Common Git Workflow 
