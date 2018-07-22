@@ -4,8 +4,11 @@
 
 1. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
 2. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
-3. Create a really horrible situation and leave people to handle it on their own.
-4. start debugging section - tips and tricks to figure out what went wrong. (reflog, diff, log, blame, bisect?(probably not)
+3. Detatched Head
+4. Accidentally rebase everyones commits into yours.
+5. Create a really horrible situation and leave people to handle it on their own.
+6. start debugging section - tips and tricks to figure out what went wrong. (reflog, diff, log, blame, bisect?(probably not)
+
 
 **Bonus**
 
@@ -37,8 +40,6 @@ Now let's edit ```git_workflow_1.txt```
 ```git commit -m "adding this change"```
 
 ```git push --set-upstream origin <branch-name>```
-
-**not sure we'll go into merging yet or not**
 
 #### What's Actually Happening:
 There's a ton going on here. Given that this is our first example and the most common of git practices we'll go over this step by step.
@@ -148,6 +149,8 @@ We're all in the same repo, working on the same files and we're racing against e
 #### What's Actually Happening:
 
 Git doesn't allow you to push to a remote repository if it contains work that you don't have locally. Because of this, you'll need to pull (git fetch, git merge) and fix any conflicting files, before you can push. 
+
+## Collaborative Work Simulation #2 (pull someone else's branch)
 
 ## Rebase Instead of Merge (rebase vs pull?)
 
