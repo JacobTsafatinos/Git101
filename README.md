@@ -118,16 +118,30 @@ We've got a branch with a bunch of good stuff on it. We want that stuff on maste
 
 ![git merge example](visuals/git-pre-merge.png)
 
-```git merge``` will look for the first common branch of our current branch, and the target branch. If there are no conflicting changes it will simply create a new "merge commit", which will have two parents as seen below.
+```git merge``` will look for the first common branch of our current branch, and the target branch. If there are no conflicting changes it will simply create a new "merge commit", which will have two parents as seen below. If there are merge conflicts you'll be asked to resolve them manually.
 
 ![git merge example](visuals/git-post-merge.png)
 
-## Better Merging
+## Collaborative Work Simulation (Fixing Merge Conflicts)
 
 #### Set Up:
+Let's all go to this branch <target-branch>. Everyone pull the latest change. Great, now we have this file called ```conflicts.txt```, I want you to alter the second word in the ```conflicts.txt```. Change ```bananas``` to whatever you want. Great now try to push.
+
 #### Situation:
+We're all in the same repo, working on the same files and we're racing against each other to get our changes out. Every time someone makes a change to the file and pushes we'll need to pull down those changes and fix any conflicts.
+
 #### Solution:
+
+```git pull```
+**Fix Merge Conflicts**
+```git add <fixed files>```
+```git commit -m <message>```
+```git push```
+
+
 #### What's Actually Happening:
+
+
 
 ## Rebase Instead of Merge (rebase vs pull?)
 
