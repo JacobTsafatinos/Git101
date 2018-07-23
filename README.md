@@ -10,7 +10,7 @@
 Have git set up. If you don't already have git then [install it!](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 #### Situation:
-Just started at Shopify and I'd like to make my first change!
+You've just started work and you'd like to make your first change!
 
 #### Solution:
 ```git clone <repo-url>```
@@ -21,12 +21,12 @@ Now let's edit ```git_workflow_1.txt```
 
 ```git add <file-name>```
 
-```git commit -m "adding this change"```
+```git commit -m "Updating out docs"```
 
 ```git push --set-upstream origin <branch-name>```
 
 #### What's Actually Happening:
-There's a ton going on here. Given that this is our first example and the most common of git practices we'll go over this step by step.
+There's a ton going on here. Given that this is our first example and the most common of git situations, we'll go over this step by step.
 
 1. ```git clone``` is primarily used to point to an existing repo and make a clone or copy of that repo at in a new directory, at another location. As a convenience, cloning automatically creates a remote connection called ```origin``` pointing back to the target repository, and creates a local ```master``` branch for you. If you're curious, this is what ```git clone``` is doing behind the scenes:
    - ```git init``` (create the local repository)
