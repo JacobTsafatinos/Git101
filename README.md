@@ -3,7 +3,9 @@
 We'll do all our backtracking work in this repo. So first let's grab everything in here.
 
 ```mkdir git101```
+
 ```cd git101```
+
 ```git clone git@github.com:JacobTsafatinos/Git101.git```
 
 
@@ -270,17 +272,17 @@ After running  ```git reset``` it now looks like:
 
 ## Undo our Undo of Local Changes (De-mystifying Reflog)
 
-#### Situation:
-We just got rid of these changes and now you want them back already?! Fine. I know what you're thinking, we can just use the same technique we just learned and ```git reset``` to the last SHA... wait... I didn't keep track of the SHA's and my ```git log``` doesn't show them anymore. What do we do???
+#### Set Up:
 
-**Let's set up this situation:**
-1. **First do this**
-1. **Then this**
-1. **Finally do this**
+We literally just did the set up above!
+
+#### Situation:
+
+We just got rid of these changes and now you want them back already?! Fine. No problem, we can use the same technique we just learned a second ago and ```git reset``` to the last SHA... wait... we didn't keep track of the SHA's and the ```git log``` doesn't show it anymore. What do we do???
 
 #### What's Actually Happening:
 
-```git reflog``` is our best friend and saviour here. ```git reflog``` shows a history of all the times the ```HEAD``` has changed. This happens when we make commits, switch branches, do resets.
+```git reflog``` is our best friend here. ```reflog``` shows a history of all the times the ```HEAD``` has changed. This happens when we make commits, switch branches, do resets.
 
 Here's what it looks like:
 ![git reflog example](visuals/git_reflog.png)
