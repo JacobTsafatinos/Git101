@@ -1,5 +1,10 @@
 # Git101
 
+We'll do all our backtracking work in this repo. So first let's grab everything in here.
+
+```mkdir git101```
+```cd git101```
+```git clone git@github.com:JacobTsafatinos/Git101.git```
 
 
 # Common Git Workflow 
@@ -100,19 +105,23 @@ And finally our commits have been squashed down to one new commit:
 ## Merging
 
 #### Set Up:
-Let's make some commits
-Then let's branch
-then let's make a few more commits
 
+let's make a branch: ```git checkout -b merging-branch-example```
+Now let's edit ```merging-example.txt```
+let's commit that change.
 
 #### Situation:
-We've got a branch with a bunch of good stuff on it. We want that stuff on master. We're going to get that stuff.
-
+We've got a branch with a nice new change on it. It's gone through imaginary code review, and now we want to have it on our local master.
 
 #### Solution:
 ```git merge <branch-name>```
 
 #### What's Actually Happening:
+
+There are two cases here. 
+Case 1 (Non-divergent branches):  
+If your branches haven't diverged (your branch has all of masters commits) git will do a "fast-forward" merge, which doesn't create a new commit, but brings in the commits from your branch on top of masters.
+Case 2 (Divergent branches):  
 
 ![git merge example](visuals/git-pre-merge.png)
 
@@ -123,10 +132,13 @@ We've got a branch with a bunch of good stuff on it. We want that stuff on maste
 ## Collaborative Work Simulation (Fixing Merge Conflicts)
 
 #### Set Up:
-Let's all go to this branch <target-branch>. Everyone pull the latest change. Great, now we have this file called ```conflicts.txt```, I want you to alter the second word in the ```conflicts.txt```. Change ```bananas``` to whatever you want. Great now try to push.
+Let's all ```git checkout master```. 
+Great, now I want you to edit ```conflicts.txt```. 
+I want you to alter the second word in ```conflicts.txt```. Change ```bananas``` to whatever you want. 
+Great now everyone do ```git push```
 
 #### Situation:
-We're all in the same repo, working on the same files and we're racing against each other to get our changes out. Every time someone makes a change to the file and pushes we'll need to pull down those changes and fix any conflicts.
+We're all in the same repo, working on the same file and we're racing against each other to get our changes out. Every time someone makes a change to the file and pushes we'll need to pull down those changes and fix any conflicts.
 
 #### Solution:
 
@@ -136,21 +148,19 @@ We're all in the same repo, working on the same files and we're racing against e
 ```git commit -m <message>```
 ```git push```
 
-
 #### What's Actually Happening:
 
 Git doesn't allow you to push to a remote repository if it contains work that you don't have locally. Because of this, you'll need to pull (git fetch, git merge) and fix any conflicting files, before you can push. 
 
-## Collaborative Work Simulation #2 (pull someone else's branch)
-
-## Rebase Instead of Merge (rebase vs pull?)
+## Rebase Instead of Merge
 
 #### Set Up:
 Make a branch and switch to it
-Make some commits
+Make some edits to ```rebase-vs-merge.txt```.
+Commit these changes.
 
 #### Situation:
-We're on a branch with a bunch of new changes. We now have a choice, we could merge this branch with master, or we could rebase. In this example we're going to rebase.
+We're on a branch with some of new changes. We now have a choice, we could merge this branch with master, or we could rebase. In this example we're going to rebase.
 
 #### Solution:
 ```git rebase master```
@@ -166,31 +176,21 @@ Although ```rebase``` and ```merge``` have similar effect, the outcomes and proc
 ![git rebase example](visuals/git-pre-rebase.png)
 ![git rebase example](visuals/git-rebase.png)
 
-
-
-
+**Question:** Can you tell us what ```git pull rebase``` will do?
 
 
 
 
 # Backtracking - How to Undo "Most" Things.
 
-We'll do all out backtracking work in the backtracking repo. So first let's check it out.
-
-```mkdir backtracking```
-```cd backtracking```
-
-```git clone <repo-address>```
-
 
 ## Undo a Push
 
-#### Situation:
-One of the most common mistakes. We made a change, pushed it and now we need to undo it.
+#### Set Up:
 
 First let's make a new branch: ```git checkout -b undo-push```
 
-Now let's edit ```push_example.txt``` however you like.
+Now let's edit ```push-example.txt``` however you like.
 
 let's add, commit and push the change. (from here on we'll assume you know how to run the following commands)
 
@@ -198,7 +198,10 @@ let's add, commit and push the change. (from here on we'll assume you know how t
 ```git commit -m "some change"```
 ```git push```
 
-Oh no this broke something! We need to undo the changes.
+Oh no this broke our imaginary service! We need to undo the changes.
+
+#### Situation:
+One of the most common mistakes. We made a change, pushed it and now we need to undo it.
 
 #### Solution:
 ```git revert <SHA>```. 
@@ -212,13 +215,16 @@ Oh no this broke something! We need to undo the changes.
 Now you can ```git push``` the new "inverse" commit to undo the broken one.
 
 
-## Fix Your Last Commit (message or code)
-#### Situation:
+## Fix Your Last Commit
+
+#### Set Up:
 Let's edit ```fix_commit_messages.txt``` and let's ```add``` it to our staging area.
 
 Now let's say we're being super productive and decide to get a little saucy with our commit messages. 
 
 ```git commit -m "getting shit done"```. 
+
+#### Situation:
 
 Oh no we just got the email from HR! Shopify took "get shit done" out of it's mandate. I guess we should fix this message or we'll look pretty stupid.
 
@@ -228,37 +234,41 @@ Oh no we just got the email from HR! Shopify took "get shit done" out of it's ma
 #### What's Actually Happening:
 ![git amend example](visuals/git_amend.png)
 
-Now if we run ```git log``` we can see the new commit message with. **NOTE: the commit SHA is now different than before**.
+Now if we run ```git log``` we can see the new commit message. **NOTE: the commit SHA is now different than before**.
 
-```git commit --amend``` updates and replaces the most recent commit with a new commit, which will combine any staged changes with the previous commit. If nothing is currently staged, then it just rewrites the previous commit message. Also if no message is specified then ```git commit --amend``` will open an edit window.
+```git commit --amend``` updates and replaces the most recent commit with a new commit, which will combine any currently staged changes with the previous commit. If nothing is currently staged, then it just rewrites the previous commit message. Also if no message is specified then ```git commit --amend``` will open an edit window. We can use ammend to fix commit messages, or to add little trivial changes to our code (things like typos and other syntax issues).
 
 ## Resetting Local Changes
 
-#### Situation:
+#### Set Up:
 We're working on a project and going lightning fast! Let's make a bunch of changes and commit them.
 
-```git commit -m "awesome change"```
+Edit ```git-reset.txt``` however you like, then:
+```git commit -am "awesome change"```
 
-```git commit -m "even better than last change"```
+Edit ```git-reset.txt``` however you like, then:
+```git commit -am "even better than last change"```
 
-```git commit -m "best of all changes right here!"```
+Edit ```git-reset.txt``` however you like, then:
+```git commit -am "best of all changes right here!"```
 
-Wow those were horrible commits! And what kind of messages are those? Let's reset the last 3 commits we just made because they're too horrible to stain our wonderful repo.
+#### Situation:
+We've made some horrible commits! And what kind of messages are those? Let's reset the last 3 commits we just made because they're too horrible to stain our wonderful repo.
 
 #### Solution:
 ```git reset <target SHA>```
 
 #### What's Actually Happening:
-Before resetting out history looked like so:
+Before resetting our history looked like so:
 
 ![git reset example](visuals/git_reset_pre.png)
 
 After running  ```git reset``` it now looks like:
 ![git reset example](visuals/git_reset_hard.png)
 
- ```git reset <target SHA>``` will change the repository's history back to what it looked like when we commited to the target SHA. It's important to note that ```git reset``` preserves the working directory, so although the commits are gone, the contents are still on disk. You can see them if you do ```git status```. Sometimes if you want to undo the commits and changes at the same time you can use ```git reset --hard <target SHA>```. Although we advise that you always use caution when using ```--hard```.
+ ```git reset <target SHA>``` will change the repository's history back to what it looked like when we commited to the target SHA. It's important to note that ```git reset``` preserves the working directory, so although the commits are gone, the contents are still on disk. You can see them if you do ```git status```. Sometimes if you want to undo the commits and changes at the same time you can use ```git reset --hard <target SHA>```.
 
-## Undo our Undo of Local Changes (Secrets of Reflog)
+## Undo our Undo of Local Changes (De-mystifying Reflog)
 
 #### Situation:
 We just got rid of these changes and now you want them back already?! Fine. I know what you're thinking, we can just use the same technique we just learned and ```git reset``` to the last SHA... wait... I didn't keep track of the SHA's and my ```git log``` doesn't show them anymore. What do we do???
@@ -411,6 +421,7 @@ You now know how to use Git.
 
 1. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
 2. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
+## Collaborative Work Simulation #2 (checkout someone else's branch)
 3. Detatched Head
 4. Accidentally rebase everyones commits into yours.
 5. Create a really horrible situation and leave people to handle it on their own.
