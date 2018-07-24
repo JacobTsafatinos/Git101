@@ -298,23 +298,31 @@ Now that we're familiar with ```git reflog``` we can do a lot with it. We have a
 
 ## Forgetting That You Were on Master
 
-#### Situation:
-Picture this classic scenario. We've just made a bunch of commits, and are about to push, but crap we realize we're on ```master```. If only there was a simple quick way to make those commits on a branch.
+#### Set Up:
 
-**Let's set up this situation:**
-1. **First do this**
-1. **Then this**
-1. **Finally do this**
+Go to master ```git checkout master```
+Edit ```forgot-master.txt```
+```add``` and ```commit``` your change.
+
+#### Situation:
+Picture this classic scenario. We've just made a bunch of commits, and are about to push, but crap we realize we're on ```master```. If only there was a simple quick way to make those commits on another branch.
 
 #### Solution:
 
-Follow this recipe: ```git branch <branch-name>``` -> ```git reset --hard origin/master``` -> ```git checkout <branch-name>``` -> ```git push --set-upstream origin <branch-name>```
+Follow this recipe: 
+```git branch <branch-name>```
+
+```git reset --hard origin/master```
+
+```git checkout <branch-name>```
+
+```git push --set-upstream origin <branch-name>```
 
 #### What's Actually Happening:
 
 A lot of things are happening here, let's go through them one by one.
 
-1. ```git branch <name>```: You're most likely familiar with ```git checkout -b <name>``` when creating new branches. That's a short cut to make a branch and immediately switch to it. However we don't actually want to switch to the new branch yet. ```git branch <name>``` will create a new branch which points to your most recent commit, but leaves us at ```master```.
+1. ```git branch <name>```: You're most likely familiar with ```git checkout -b <name>``` when creating new branches. That's a short cut to make a branch and immediately switching to it. However we don't actually want to switch to the new branch yet. ```git branch <name>``` will create a new branch which points to your most recent commit, but leaves our ```HEAD``` at ```master```.
 ![git branch reset example](visuals/branch_reset_1.png)
 1. As we know ```git reset --hard origin/master``` will move ```master``` back to ```origin/master```, before we made any commits. This is okay because we've moved all our commits to the new branch first.
 ![git branch reset example](visuals/branch_reset_2.png)
@@ -324,13 +332,9 @@ A lot of things are happening here, let's go through them one by one.
 ![git branch reset example](visuals/branch_reset_4.png)
 
 ## What the Heck is Git Rebase -i Used for Anyway?
+
 #### Situation:
 Imagine we started work on an issue with one solution, but midway we found another way was better. We have a billion commits now, but only some of them are actually useful. We want to push but don't really care about some of them, in fact we want them gone entirely.
-
-**Let's set up this situation:**
-1. **First do this**
-1. **Then this**
-1. **Finally do this**
 
 #### Solution:
 ```git rebase -i <earlier SHA>```
@@ -350,16 +354,19 @@ You may have seen this before when being told to do a rebase, and most people on
 1. ```fixup``` like ```squash``` it melds "up" with the commit immediately above it, but it drops the commit message.
 1. ```drop``` removes the commit. You could also achieve this by just deleting the line.
 
-**NOTE: These actions will get applied when you save and quick your editor, this happens top to bottom. You can adjust the order of the commits by simply moving lines around.**
+**NOTE: These actions will get applied when you save and quit your editor, this happens top to bottom. You can adjust the order of the commits by simply moving lines around.**
 
 ## Stop Tracking a File
-#### Situation:
-You accidentally added a file to your staging aread and now you want to stop tracking it.
 
-**Let's set up this situation:**
-1. **First do this**
-1. **Then this**
-1. **Finally do this**
+#### Set Up:
+Let's add a new file.
+
+```touch new-file.txt```
+
+```git add new-file.txt```
+
+#### Situation:
+You added a file to your staging aread and now you decided you don't actually want to track it anymore.
 
 #### Solution:
 ```git rm --cached <filename>```
@@ -373,28 +380,20 @@ Once a file has been added and commited, Git will continue to track changes in t
 #### Situation:
 Rebase went sour? you have a million commits included in your change and you have no idea how they got there? Some weird config on your local machine is messing with your stuff? Don't sink with the ship, get there hell out of there and take only what you need with you!
 
-**Let's set up this situation:**
-1. **First do this**
-1. **Then this**
-1. **Finally do this**
-
 #### Solution:
 
-1. ```git checkout master``` (make sure it's up to date)
+1. ```git checkout master``` (make sure it's up to date with a ```git pull```)
 2. ```git checkout -b new_branch```
 3. ```git cherry-pick <target SHA>```
 
 #### What's actually happening:
 
-This one isn't actually that complicated. First we move the head back to the ```master``` branch to make sure we're escaping the horrors of our branch. Then we create a new branch and move our head to it so we're starting fresh from whatevers on ```master```. Finally we grab the specified commits and make "copies" of them on top of our current branch. 
+This one isn't actually that complicated. First we move the head back to the ```master``` branch to make sure we're escaping the horrors of our branch. Then we create a new branch and move our head to it so we're starting fresh from whatevers on ```master```. Finally we grab the specified commits and make "copies" of them on top of nice clean new branch. 
 
 ![git cherry picking example](visuals/cherry_picking.png)
 
 
-Notice that as we ```cherry-pick``` each commit, we're creating new ```SHA```'s, but the commit messages remain the same.
-
-# backtracking todo:
-1. git patching, and recovering from detatched head.
+Notice that as we ```cherry-pick``` each commit, we're creating new ```SHA```'s, but the commit messages remain the same. When we ```cherry-pick```, we're not actually grabbing the same commit object, but instead we're copying it's contents into a new commit object.
 
 ## The Final Boss
 #### Set Up:
@@ -415,27 +414,4 @@ Figure it out yourself!
 #### What's Actually Happening:
 
 You now know how to use Git.
-
-
-
-
-# TODO
-
-1. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
-2. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
-## Collaborative Work Simulation #2 (checkout someone else's branch)
-3. Detatched Head
-4. Accidentally rebase everyones commits into yours.
-5. Create a really horrible situation and leave people to handle it on their own.
-6. start debugging section - tips and tricks to figure out what went wrong. (reflog, diff, log, blame, bisect?(probably not)
-
-
-**Bonus**
-
-Stashing
-
-Git Cheat Sheet
-
-Handouts
-
 
