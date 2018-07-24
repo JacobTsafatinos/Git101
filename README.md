@@ -1,19 +1,6 @@
 # Git101
 
-# TODO
 
-1. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
-2. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
-3. Create a really horrible situation and leave people to handle it on their own.
-4. start debugging section - tips and tricks to figure out what went wrong. (reflog, diff, log, blame, bisect?(probably not)
-
-**Bonus**
-
-Stashing
-
-Git Cheat Sheet
-
-Handouts
 
 # Common Git Workflow 
 
@@ -23,7 +10,7 @@ Handouts
 Have git set up. If you don't already have git then [install it!](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 #### Situation:
-Just started at Shopify and I'd like to make my first change!
+You've just started work and you'd like to make your first change!
 
 #### Solution:
 ```git clone <repo-url>```
@@ -34,14 +21,12 @@ Now let's edit ```git_workflow_1.txt```
 
 ```git add <file-name>```
 
-```git commit -m "adding this change"```
+```git commit -m "Updating out docs"```
 
 ```git push --set-upstream origin <branch-name>```
 
-**not sure we'll go into merging yet or not**
-
 #### What's Actually Happening:
-There's a ton going on here. Given that this is our first example and the most common of git practices we'll go over this step by step.
+There's a ton going on here. Given that this is our first example and the most common of git situations, we'll go over this step by step.
 
 1. ```git clone``` is primarily used to point to an existing repo and make a clone or copy of that repo at in a new directory, at another location. As a convenience, cloning automatically creates a remote connection called ```origin``` pointing back to the target repository, and creates a local ```master``` branch for you. If you're curious, this is what ```git clone``` is doing behind the scenes:
    - ```git init``` (create the local repository)
@@ -148,6 +133,8 @@ We're all in the same repo, working on the same files and we're racing against e
 #### What's Actually Happening:
 
 Git doesn't allow you to push to a remote repository if it contains work that you don't have locally. Because of this, you'll need to pull (git fetch, git merge) and fix any conflicting files, before you can push. 
+
+## Collaborative Work Simulation #2 (pull someone else's branch)
 
 ## Rebase Instead of Merge (rebase vs pull?)
 
@@ -409,5 +396,26 @@ Figure it out yourself!
 #### What's Actually Happening:
 
 You now know how to use Git.
+
+
+
+
+# TODO
+
+1. Collaboration simulation: create branch -> pull changes from someone else's branch -> make multiple commits -> squash commits down -> push changes back to that branch.
+2. clone repo -> create branch -> make small change -> pull --rebase new changes from master (instead of merge) -> push into master
+3. Detatched Head
+4. Accidentally rebase everyones commits into yours.
+5. Create a really horrible situation and leave people to handle it on their own.
+6. start debugging section - tips and tricks to figure out what went wrong. (reflog, diff, log, blame, bisect?(probably not)
+
+
+**Bonus**
+
+Stashing
+
+Git Cheat Sheet
+
+Handouts
 
 
