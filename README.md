@@ -132,9 +132,12 @@ We've got a branch with a nice new change on it. It's gone through imaginary cod
 #### What's Actually Happening:
 
 There are two cases here. 
-Case 1 (Non-divergent branches):  
+
+**Case 1** (Non-divergent branches):  
+
 If your branches haven't diverged (your branch has all of masters commits) git will do a "fast-forward" merge, which doesn't create a new commit, but brings in the commits from your branch on top of masters.
-Case 2 (Divergent branches):  
+
+**Case 2** (Divergent branches):  
 
 ![git merge example](visuals/git-pre-merge.png)
 
