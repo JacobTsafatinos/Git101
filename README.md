@@ -21,7 +21,7 @@ Now let's edit ```git_workflow_1.txt```
 
 ```git add <file-name>```
 
-```git commit -m "Updating out docs"```
+```git commit -m "Updating our docs"```
 
 ```git push --set-upstream origin <branch-name>```
 
@@ -34,9 +34,7 @@ There's a ton going on here. Given that this is our first example and the most c
    - ```git fetch``` (fetch all branches from that URL to your local repository)
    - ```git checkout``` (create all the files of the main branch in your working tree)
   
-2. ```git checkout -b <branch-name>``` creates a new branch which is a copy from wherever your current HEAD is, and moves the HEAD to the new branch. This command also is the combination of two other commands:
-
-Clean fresh master: 
+2. ```git checkout -b <branch-name>``` creates a new branch from wherever your current ```HEAD``` is, and moves the ```HEAD``` to point to the new branch. This command also is the combination of two other commands, it works as illustrated bellow:
 
 ![git branch example](visuals/git-branch-master.png) . 
 
@@ -48,7 +46,7 @@ Clean fresh master:
 
 ![git branch example](visuals/git-branch-checkout.png) 
 
-3. ```git add``` is a simple one, this moves whatever files you give it to the staging aread (also known as the index). This tells git to include these files in the next commit.  
+3. ```git add``` moves whatever files you give it to the staging area (also known as the index). This tells git to include these files in the next commit.  
 
 4.```git commit``` takes any files in the staging area and adds them to the local repository. More specifically it creates a new commit object containing your changes, a pointer to it's parent commit, and a SHA identifier, it then updates the HEAD to point to this newly created commit. [(as well as some other things that you can read about in this great post about the anatomy of a commit.)](https://blog.thoughtram.io/git/2014/11/18/the-anatomy-of-a-git-commit.html)  
 
@@ -61,33 +59,42 @@ Adding a remote tracking branch means that git then knows what you want to do wh
 
 #### Set Up:
 
-Let's make a bunch of minor changes, do the following 5 times:
+Let's make a bunch of minor changes:
 
-edit ```squashing.txt```
+edit ```squashing.txt``` however you want.
 
 ```git add squashing.txt```
 
 ```git commit -m "some descriptive message"```
 
+Do the above 3 more times.
+
 
 #### Situation:
-**flesh out this example more into logical commits**
-We have a bunch of little changes, and they're all kind of related to the same logical change. We could just push this history which would be representative of the literal history of the changes made, however it doesn't read very well if you're doing some git log debugging. What if we could squash all these commits down to 1 nice commit?
+
+Imagine you have a bunch of small commits that are all related to the same logical change. We could just push this history which would be and accurate representation of the literal history, however it doesn't read very well if you're doing some git log debugging and you see a bunch of commits like "fixed typo", "forgot to change method name", "ate some spaghetti". What if we could squash all these commits down fewer commits that was more descriptive?
 
 #### Solution:
 
-```git rebase -i HEAD~5```
+```git rebase -i HEAD~3```
 
 #### What's Actually Happening:
 
-We'll go into more detail about ```git rebase -i``` later, but for now what's happening is we're going to merge all our commits into one logical commit. This new commit will contain all the changes of the squashed commits directly below it. We should see an editor pop up that looks like this:
-**Our Git log**
-**enter exibit A**
-We'll pick the commits we want to squash, and it'll now look like this:
-**enter exibit B**
-**Our Git log now!**
+We'll go into more detail about ```git rebase -i``` later, but for now what's happening is we're going to merge all our commits into one logical commit. This new commit will contain all the changes of the squashed commits below it. Let's look at our ```git log``` before squashing, it looks something like this:
 
-**See rebase -i section?**
+![git squash example](visuals/git-squash-log.png)
+
+After typing ```git rebase -i HEAD~3``` We should see an editor pop up containing our 3 commits:
+
+![git squash example](visuals/git-squash-pre.png)
+
+Now we'll pick the commits we want to squash:
+
+![git squash example](visuals/git-squash-squash.png)
+
+And finally our commits have been squashed down to one new commit:
+
+![git squash example](visuals/git-squash-log-post.png)
 
 
 ## Merging
