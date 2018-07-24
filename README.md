@@ -9,6 +9,9 @@ We'll do all our backtracking work in this repo. So first let's grab everything 
 ```git clone git@github.com:JacobTsafatinos/Git101.git```
 
 
+
+
+
 # Common Git Workflow 
 
 ## Most Common of Git Workflows (don't take anything for granted)
@@ -62,6 +65,9 @@ There's a ton going on here. Given that this is our first example and the most c
 Adding a remote tracking branch means that git then knows what you want to do when you git fetch, git pull or git push in future. It assumes that you want to keep the local branch and the remote branch it is tracking in sync and does the appropriate thing to achieve this.
 
 
+
+
+
 ## Squashing
 
 #### Set Up:
@@ -104,12 +110,17 @@ And finally our commits have been squashed down to one new commit:
 ![git squash example](visuals/git-squash-log-post.png)
 
 
+
+
+
 ## Merging
 
 #### Set Up:
 
 let's make a branch: ```git checkout -b merging-branch-example```
-Now let's edit ```merging-example.txt```
+
+Now let's edit ```merging_example.txt```
+
 let's commit that change.
 
 #### Situation:
@@ -131,12 +142,21 @@ Case 2 (Divergent branches):
 
 ![git merge example](visuals/git-post-merge.png)
 
+
+
+
+
 ## Collaborative Work Simulation (Fixing Merge Conflicts)
 
 #### Set Up:
 Let's all ```git checkout master```. 
+
 Great, now I want you to edit ```conflicts.txt```. 
-I want you to alter the second word in ```conflicts.txt```. Change ```bananas``` to whatever you want. 
+
+Edit the second word in ```conflicts.txt```. 
+
+Change ```bananas``` to whatever you want. 
+
 Great now everyone do ```git push```
 
 #### Situation:
@@ -154,11 +174,17 @@ We're all in the same repo, working on the same file and we're racing against ea
 
 Git doesn't allow you to push to a remote repository if it contains work that you don't have locally. Because of this, you'll need to pull (git fetch, git merge) and fix any conflicting files, before you can push. 
 
+
+
+
+
 ## Rebase Instead of Merge
 
 #### Set Up:
-Make a branch and switch to it
-Make some edits to ```rebase-vs-merge.txt```.
+Make a branch and switch to it.
+
+Make some edits to ```rebase_vs_merge.txt```.
+
 Commit these changes.
 
 #### Situation:
@@ -183,7 +209,19 @@ Although ```rebase``` and ```merge``` have similar effect, the outcomes and proc
 
 
 
+
+
+
+
+
+
+
+
+
 # Backtracking - How to Undo "Most" Things.
+
+
+
 
 
 ## Undo a Push
@@ -192,12 +230,14 @@ Although ```rebase``` and ```merge``` have similar effect, the outcomes and proc
 
 First let's make a new branch: ```git checkout -b undo-push```
 
-Now let's edit ```push-example.txt``` however you like.
+Now let's edit ```push_example.txt``` however you like.
 
 let's add, commit and push the change. (from here on we'll assume you know how to run the following commands)
 
 ```git add push_example.txt```
+
 ```git commit -m "some change"```
+
 ```git push```
 
 Oh no this broke our imaginary service! We need to undo the changes.
@@ -215,6 +255,9 @@ One of the most common mistakes. We made a change, pushed it and now we need to 
 ```git revert``` creates a new commit that is the inverse of the SHA passed in (anything removed or added in the old commit will be reversed in the new commit). Revert is good because it doesn't alter any history, it simply creates a brand new commit removing your changes.
 
 Now you can ```git push``` the new "inverse" commit to undo the broken one.
+
+
+
 
 
 ## Fix Your Last Commit
@@ -245,13 +288,16 @@ Now if we run ```git log``` we can see the new commit message. **NOTE: the commi
 #### Set Up:
 We're working on a project and going lightning fast! Let's make a bunch of changes and commit them.
 
-Edit ```git-reset.txt``` however you like, then:
+Edit ```git_reset.txt``` however you like, then:
+
 ```git commit -am "awesome change"```
 
-Edit ```git-reset.txt``` however you like, then:
+Edit ```git_reset.txt``` however you like, then:
+
 ```git commit -am "even better than last change"```
 
-Edit ```git-reset.txt``` however you like, then:
+Edit ```git_reset.txt``` however you like, then:
+
 ```git commit -am "best of all changes right here!"```
 
 #### Situation:
@@ -301,7 +347,9 @@ Now that we're familiar with ```git reflog``` we can do a lot with it. We have a
 #### Set Up:
 
 Go to master ```git checkout master```
-Edit ```forgot-master.txt```
+
+Edit ```forgot_master.txt```
+
 ```add``` and ```commit``` your change.
 
 #### Situation:
@@ -361,9 +409,9 @@ You may have seen this before when being told to do a rebase, and most people on
 #### Set Up:
 Let's add a new file.
 
-```touch new-file.txt```
+```touch new_file.txt```
 
-```git add new-file.txt```
+```git add new_file.txt```
 
 #### Situation:
 You added a file to your staging aread and now you decided you don't actually want to track it anymore.
@@ -395,23 +443,7 @@ This one isn't actually that complicated. First we move the head back to the ```
 
 Notice that as we ```cherry-pick``` each commit, we're creating new ```SHA```'s, but the commit messages remain the same. When we ```cherry-pick```, we're not actually grabbing the same commit object, but instead we're copying it's contents into a new commit object.
 
-## The Final Boss
-#### Set Up:
-Do this
-and this
-and this
-and this
-and then this
-and all these things
+## Make Up Your Own Scenario
 
-#### Situation:
-
-We're in a really bad state here, there's many different things we can do to get out of this.
-
-#### Solution:
-Figure it out yourself!
-
-#### What's Actually Happening:
-
-You now know how to use Git.
+If you've finished early, congrats. If you have a questions, or want to know about a situation that we didn't cover let us know and we can go through it.
 
